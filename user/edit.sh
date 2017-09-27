@@ -148,11 +148,12 @@ fi
 if [[ $ec == 3 ]];then
 	echo "协议方式"
 	echo '1.origin'
-	echo '2.auth_sha1_v4'
-	echo '3.auth_aes128_md5'
-	echo '4.auth_aes128_sha1'
-	echo '5.verify_deflate'
-	echo '6.auth_chain_a'
+	echo '2.auth_sha1'
+	echo '3.auth_sha1_v4'
+	echo '4.auth_aes128_md5'
+	echo '5.auth_aes128_sha1'
+	echo '6.verify_deflate'
+	echo '7.auth_chain_a'
 	while :; do echo
 	read -p "输入协议方式： " ux
 	if [[ ! $ux =~ ^[1-6]$ ]]; then
@@ -162,7 +163,7 @@ if [[ $ec == 3 ]];then
 	fi
 	done
 	
-	if [[ $ux == 2 ]];then
+	if [[ $ux == 3 ]];then
 	while :; do echo
 		read -p "是否兼容原版协议（y/n）： " ifprotocolcompatible
 		if [[ ! $ifprotocolcompatible =~ ^[y,n]$ ]]; then
@@ -177,18 +178,21 @@ if [[ $ec == 3 ]];then
 	ux1="origin"
 	fi
 	if [[ $ux == 2 ]];then
-		ux1="auth_sha1_v4"
+	        ux1="auth_sha1"
 	fi
 	if [[ $ux == 3 ]];then
-		ux1="auth_aes128_md5"
+		ux1="auth_sha1_v4"
 	fi
 	if [[ $ux == 4 ]];then
-		ux1="auth_aes128_sha1"
+		ux1="auth_aes128_md5"
 	fi
 	if [[ $ux == 5 ]];then
-		ux1="verify_deflate"
+		ux1="auth_aes128_sha1"
 	fi
 	if [[ $ux == 6 ]];then
+		ux1="verify_deflate"
+	fi
+	if [[ $ux == 7 ]];then
 		ux1="auth_chain_a"
 	fi
 
